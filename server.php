@@ -1,7 +1,10 @@
 <?php
-$dsn      = 'pgsql:dbname=docker;host=pgsql';
-$username = 'docker';
-$password = 'docker';
+$dbhost = !empty($_ENV['DBHOST']) ? $_ENV['DBHOST'] : 'pgsql';
+$dbname = !empty($_ENV['DBNAME']) ? $_ENV['DBNAME'] : 'docker';
+$username = !empty($_ENV['DBUSER']) ? $_ENV['DBUSER'] : 'docker';
+$password = !empty($_ENV['DBPASSWORD']) ? $_ENV['DBPASSWORD'] : 'docker';
+
+$dsn      = 'pgsql:dbname=' . $dbname . ';host=' . $dbhost;
 
 // error reporting (this is a demo, after all!)
 ini_set('display_errors',1);error_reporting(E_ALL);
